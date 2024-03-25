@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro/enums/timer_mode_enum.dart';
 import 'package:pomodoro/features/timer/timer_service.dart';
 
 class HomeController with ChangeNotifier {
-  final TimerService _timerService;
-
   HomeController(this._timerService) {
-    _timerService.addListener(() {
-      notifyListeners();
-    });
+    _timerService.addCountListener(notifyListeners);
+    _timerService.addTimerCompleteListener(toggleTimerMode);
+    _timerService.addTimerCompleteListener(notifyListeners);
   }
 
-  String get time => _timerService.time;
+  var timerMode = TimerMode.pomodoro;
 
-  double get timerProgress => _timerService.progress;
-
-  bool get isTimerCounting => _timerService.isCounting;
+  final TimerService _timerService;
 
   @override
   void dispose() {
@@ -22,12 +19,36 @@ class HomeController with ChangeNotifier {
     _timerService.dispose();
   }
 
-  void startTimer() {
-    _timerService.startCount();
+  String get time => _timerService.formattedTime;
+
+  double get timerProgress => _timerService.progress;
+
+  bool get isTimerCounting => _timerService.isCounting;
+
+  String get nextTimerButtonLabel =>
+      'Change to ${timerMode == TimerMode.pomodoro ? TimerMode.shortBreak.label : TimerMode.pomodoro.label} timer';
+
+  void onPressedPlayButton() {
+    if (timerProgress == 1) {
+      _timerService.startTimer();
+    } else {
+      _timerService.isCounting
+          ? _timerService.pauseCount()
+          : _timerService.setDecrementingTimer();
+    }
+
+    notifyListeners();
   }
 
-  void resetTimer() {
-    _timerService.resetTimer();
+  void stopTimer() {
+    _timerService.resetTimeCounter();
+    notifyListeners();
+  }
+
+  void toggleTimerMode() {
+    timerMode = (timerMode == TimerMode.pomodoro)
+        ? TimerMode.shortBreak
+        : TimerMode.pomodoro;
     notifyListeners();
   }
 }
