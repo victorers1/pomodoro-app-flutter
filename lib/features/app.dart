@@ -2,6 +2,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
+import 'package:pomodoro/features/local_memory/local_memory_service.dart';
 
 import 'home/home_page.dart';
 import 'settings/settings_controller.dart';
@@ -12,10 +13,12 @@ class PomodoroApp extends StatelessWidget {
     super.key,
     required this.settingsController,
     required this.homeController,
+    required this.localMemoryService,
   });
 
   final SettingsController settingsController;
   final HomeController homeController;
+  final LocalMemoryService localMemoryService;
 
   @override
   Widget build(BuildContext context) {

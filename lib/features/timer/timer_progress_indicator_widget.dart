@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:pomodoro/enums/timer_mode_enum.dart';
 import 'package:pomodoro/extensions/string_extensions.dart';
+import 'package:pomodoro/features/timer/timer_clock_widget.dart';
 import 'package:pomodoro/theme/sizes.dart';
 
 class TimerProgressIndicatorWidget extends StatelessWidget {
@@ -24,7 +25,7 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final halfScreenWidth = MediaQuery.of(context).size.width / 2;
+    final halfScreenWidth = MediaQuery.of(context).size.width / 1.5;
     final progressIndicatorSize = Size.square(halfScreenWidth);
     final timeHeaderLabel = timerMode == TimerMode.shortBreak
         ? AppLocalizations.of(context)!.breakTimer.capitalize
@@ -48,38 +49,10 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
                 AppLocalizations.of(context)!.timerIndicatorSemanticsLabel,
             semanticsValue: '$progressValue',
           ),
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  timeHeaderLabel,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                Text(
-                  time,
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                SizedBox(
-                  height: Sizes.size24,
-                  child: TextButton(
-                    onPressed: onStopPressed,
-                    style: const ButtonStyle(
-                      visualDensity: VisualDensity.compact,
-                      padding: MaterialStatePropertyAll(
-                        EdgeInsets.zero,
-                      ),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.stopTimer.capitalize,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ),
-                )
-              ],
-            ),
+          TimerClockWidget(
+            timeHeaderLabel: timeHeaderLabel,
+            time: time,
+            onStopPressed: onStopPressed,
           )
         ],
       ),

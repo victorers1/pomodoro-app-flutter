@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro/features/local_memory/local_memory_service.dart';
 
 class SettingsService {
-  // TODO: recover the last theme selected
-  Future<ThemeMode> themeMode() async => ThemeMode.system;
+  final LocalMemoryService localMemoryService;
 
-  /// TODO: persists the user's preferred ThemeMode to local or remote storage.
+  SettingsService({required this.localMemoryService});
+
+  Future<ThemeMode> themeMode() async {
+    final lastSavedTheme = await localMemoryService.loadString(
+      LocalMemoryService.themeModeStoreKey,
+    );
+
+    return ThemeMode.values.byName(lastSavedTheme ?? ThemeMode.system.name);
+  }
+
   Future<void> updateThemeMode(ThemeMode theme) async {
-    // Use the shared_preferences package to persist settings locally or the
-    // http package to persist settings over the network.
+    localMemoryService.storeString(
+      LocalMemoryService.themeModeStoreKey,
+      theme.name,
+    );
   }
 }
