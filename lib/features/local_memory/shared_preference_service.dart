@@ -1,10 +1,10 @@
-import 'package:pomodoro/features/local_memory/local_memory_service.dart';
+import 'package:pomodoro/features/local_memory/i_local_memory_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferenceService extends LocalMemoryService {
-  final SharedPreferences prefs;
+class SharedPreferenceService extends ILocalMemoryService {
+  final SharedPreferences _prefs;
 
-  SharedPreferenceService({required this.prefs});
+  SharedPreferenceService({required SharedPreferences prefs}) : _prefs = prefs;
 
   @override
   Future<void> init() async {
@@ -13,9 +13,9 @@ class SharedPreferenceService extends LocalMemoryService {
 
   @override
   Future<void> storeString(String key, String value) async {
-    prefs.setString(key, value);
+    _prefs.setString(key, value);
   }
 
   @override
-  Future<String?> loadString(String key) async => prefs.getString(key);
+  Future<String?> loadString(String key) async => _prefs.getString(key);
 }

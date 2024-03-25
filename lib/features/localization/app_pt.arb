@@ -2,6 +2,7 @@
   "appTitle": "Pomodoro",
   "stopTimer": "parar",
   "breakTimer": "intervalo",
+  "theme": "tema",
   "systemTheme": "tema do sistema",
   "lightTheme": "tema claro",
   "darkTheme": "tema escuro",
@@ -11,5 +12,6 @@
   "pauseTimer": "pausar",
   "startTimer": "iniciar",
   "forwardTimer": "Pular para {timerMode}",
-  "timerIndicatorSemanticsLabel": "Barra de progresso do pomodoro"
+  "timerIndicatorSemanticsLabel": "Barra de progresso do pomodoro",
+  "language": "idioma"
 }

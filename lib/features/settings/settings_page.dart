@@ -1,47 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/extensions/string_extensions.dart';
+import 'package:pomodoro/features/build_info/i_build_info_service.dart';
+import 'package:pomodoro/features/settings/app_language_setting_widget.dart';
+import 'package:pomodoro/features/settings/app_theme_setting_widget.dart';
+import 'package:pomodoro/theme/sizes.dart';
 
 import 'settings_controller.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key, required this.controller});
+  const SettingsPage({
+    super.key,
+    required this.controller,
+    required this.buildInfoService,
+  });
 
   static const routeName = '/settings';
 
   final SettingsController controller;
+  final IBuildInfoService buildInfoService;
 
   @override
   Widget build(BuildContext context) {
+    final Future<List<String>> buildInfo = Future.wait(
+      [buildInfoService.getVersionNumber(), buildInfoService.getBuildNumber()],
+    );
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(AppLocalizations.of(context)!.settings.capitalize),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: DropdownButton<ThemeMode>(
-          value: controller.themeMode,
-          onChanged: controller.updateThemeMode,
-          items: [
-            DropdownMenuItem(
-              value: ThemeMode.system,
-              child: Text(
-                AppLocalizations.of(context)!.systemTheme.capitalizeEachWord,
-              ),
+        padding: const EdgeInsets.all(Sizes.size16),
+        child: Column(
+          children: [
+            AppThemeSettingWidget(
+              themeMode: controller.themeMode,
+              onChanged: controller.updateThemeMode,
             ),
-            DropdownMenuItem(
-              value: ThemeMode.light,
-              child: Text(
-                AppLocalizations.of(context)!.lightTheme.capitalizeEachWord,
-              ),
+            AppLanguageSettingWidget(
+              language: controller.language,
+              onChanged: controller.updateLanguage,
             ),
-            DropdownMenuItem(
-              value: ThemeMode.dark,
-              child: Text(
-                AppLocalizations.of(context)!.darkTheme.capitalizeEachWord,
-              ),
-            )
+            const Spacer(),
+            FutureBuilder<List<String>>(
+              future: buildInfo,
+              initialData: const ['x.y.z', '0'],
+              builder: (context, snapshot) {
+                String versionNumber = '';
+                String buildNumber = '';
+                [versionNumber, buildNumber] = snapshot.data ?? ['', ''];
+                return Text('$versionNumber+$buildNumber');
+              },
+            ),
           ],
         ),
       ),

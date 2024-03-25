@@ -11,6 +11,10 @@
   "@break": {
     "description": "Pause the pomorodo timer"
   },
+  "theme": "theme",
+  "@theme": {
+    "description": "theme item label in settings page"
+  },
   "systemTheme": "system theme",
   "@systemTheme": {
     "description": "System's Theme drowpdown option label"
@@ -55,7 +59,11 @@
   },
   "timerIndicatorSemanticsLabel": "Pomodoro timer progress bar",
   "@timerProgressindicatorSemanticsLabel": {
-    "description": "Timer progress bar indicator semancs alabel"
-
+    "description": "Timer progress bar indicator semantics label"
+  },
+  "language": "language",
+  "@language": {
+    "description": "App's display language"
   }
+
 }

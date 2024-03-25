@@ -1,8 +1,9 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:pomodoro/features/build_info/i_build_info_service.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
-import 'package:pomodoro/features/local_memory/local_memory_service.dart';
+import 'package:pomodoro/features/local_memory/i_local_memory_service.dart';
 
 import 'home/home_page.dart';
 import 'settings/settings_controller.dart';
@@ -14,11 +15,13 @@ class PomodoroApp extends StatelessWidget {
     required this.settingsController,
     required this.homeController,
     required this.localMemoryService,
+    required this.buildInfoService,
   });
 
   final SettingsController settingsController;
   final HomeController homeController;
-  final LocalMemoryService localMemoryService;
+  final ILocalMemoryService localMemoryService;
+  final IBuildInfoService buildInfoService;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +70,10 @@ class PomodoroApp extends StatelessWidget {
                   builder: (BuildContext context) {
                     switch (routeSettings.name) {
                       case SettingsPage.routeName:
-                        return SettingsPage(controller: settingsController);
+                        return SettingsPage(
+                          controller: settingsController,
+                          buildInfoService: buildInfoService,
+                        );
                       case HomePage.routeName:
                       default:
                         return HomePage(controller: homeController);
