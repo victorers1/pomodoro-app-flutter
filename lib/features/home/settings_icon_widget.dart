@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/features/settings/settings_page.dart';
 
 class SettingsIconWidget extends StatelessWidget {
@@ -10,8 +11,7 @@ class SettingsIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.settings),
-      // TODO: add intl
-      tooltip: '',
+      tooltip: AppLocalizations.of(context)!.goToSettings,
       onPressed: () {
         Navigator.restorablePushNamed(
           context,

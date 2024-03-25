@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/enums/timer_mode_enum.dart';
+import 'package:pomodoro/extensions/string_extensions.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
 import 'package:pomodoro/features/home/settings_icon_widget.dart';
 import 'package:pomodoro/features/timer/timer_progress_indicator_widget.dart';
@@ -18,17 +19,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: add intl
-    final nextTimerButtonLabel =
-        'Change to ${controller.timerMode == TimerMode.pomodoro ? AppLocalizations.of(context)?.appTitle : AppLocalizations.of(context)?.breakTimer} timer';
+    final nextTimerMode = controller.timerMode == TimerMode.pomodoro
+        ? AppLocalizations.of(context)!.breakTimer
+        : AppLocalizations.of(context)!.appTitle;
+
+    final nextTimerButtonLabel = AppLocalizations.of(context)!.forwardTimer(
+      nextTimerMode,
+    );
 
     return ListenableBuilder(
       listenable: controller,
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
-            // TODO: add intl
-            title: const Text('Home'),
+            title: Text(AppLocalizations.of(context)!.home.capitalize),
             centerTitle: true,
             actions: const [SettingsIconWidget()],
           ),
@@ -52,18 +56,16 @@ class HomePage extends StatelessWidget {
                     controller.isTimerCounting
                         ? FloatingActionButton(
                             heroTag: null,
-                            // TODO: add intl
-                            tooltip: 'Pause',
-                            onPressed: controller.onPressedPlayButton,
+                            tooltip: AppLocalizations.of(context)!.pauseTimer,
+                            onPressed: controller.resumeTimer,
                             child: const Icon(
                               Icons.pause_rounded,
                             ),
                           )
                         : FloatingActionButton(
                             heroTag: null,
-                            // TODO: add intl
-                            tooltip: 'Start',
-                            onPressed: controller.onPressedPlayButton,
+                            tooltip: AppLocalizations.of(context)!.startTimer,
+                            onPressed: controller.resumeTimer,
                             child: const Icon(
                               Icons.play_arrow_rounded,
                             ),

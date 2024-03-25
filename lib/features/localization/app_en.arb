@@ -22,5 +22,40 @@
   "darkTheme": "dark theme",
   "@darkTheme": {
     "description": "Dark Theme drowpdown option label"
+  },
+  "settings": "settings",
+  "@settings": {
+    "description": "Settings page title"
+  },
+  "goToSettings": "go to settings",
+  "@goToSettings": {
+    "description": "Settings button tooltip"
+  },
+  "home": "home",
+  "@home": {
+    "description": "Home page title"
+  },
+  "pauseTimer": "pause",
+  "@pause": {
+    "description": "Pause timer button tooltip"
+  },
+  "startTimer": "start",
+  "@start": {
+    "description": "Start timer button tooltip"
+  },
+  "forwardTimer": "Forward to {timerMode}",
+  "@forwardTimer": {
+    "description": "Step forward to the next timer mode",
+    "placeholders": {
+      "timerMode": {
+        "type": "String",
+        "example": "Break"
+      }
+    }
+  },
+  "timerIndicatorSemanticsLabel": "Pomodoro timer progress bar",
+  "@timerProgressindicatorSemanticsLabel": {
+    "description": "Timer progress bar indicator semancs alabel"
+
   }
 }

@@ -15,8 +15,8 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // TODO: add intl
-        title: const Text('Settings'),
+        centerTitle: true,
+        title: Text(AppLocalizations.of(context)!.settings.capitalize),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

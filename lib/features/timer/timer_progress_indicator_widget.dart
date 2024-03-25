@@ -44,8 +44,8 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
             strokeWidth: Sizes.size8,
             strokeAlign: BorderSide.strokeAlignInside,
-            // TODO: add intl
-            semanticsLabel: 'Pomodoro timer progress bar',
+            semanticsLabel:
+                AppLocalizations.of(context)!.timerIndicatorSemanticsLabel,
             semanticsValue: '$progressValue',
           ),
           Center(

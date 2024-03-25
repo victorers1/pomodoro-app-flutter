@@ -25,7 +25,7 @@ class HomeController with ChangeNotifier {
 
   bool get isTimerCounting => _timerService.isCounting;
 
-  void onPressedPlayButton() {
+  void resumeTimer() {
     if (timerProgress == 1) {
       _timerService.startTimer();
     } else {

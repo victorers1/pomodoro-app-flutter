@@ -4,5 +4,12 @@
   "breakTimer": "intervalo",
   "systemTheme": "tema do sistema",
   "lightTheme": "tema claro",
-  "darkTheme": "tema escuro"
+  "darkTheme": "tema escuro",
+  "settings": "configurações",
+  "goToSettings": "ir para configurações",
+  "home": "início",
+  "pauseTimer": "pausar",
+  "startTimer": "iniciar",
+  "forwardTimer": "Pular para {timerMode}",
+  "timerIndicatorSemanticsLabel": "Barra de progresso do pomodoro"
 }
