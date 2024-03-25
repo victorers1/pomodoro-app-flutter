@@ -1,6 +1,26 @@
 {
-  "appTitle": "pomodoro",
+  "appTitle": "Pomodoro",
   "@appTitle": {
     "description": "The title of the application"
+  },
+  "stopTimer": "stop",
+  "@stopTimer": {
+    "description": "Resets pomodoro timer"
+  },
+  "breakTimer": "break",
+  "@break": {
+    "description": "Pause the pomorodo timer"
+  },
+  "systemTheme": "system theme",
+  "@systemTheme": {
+    "description": "System's Theme drowpdown option label"
+  },
+  "lightTheme": "light theme",
+  "@lightTheme": {
+    "description": "Light Theme drowpdown option label"
+  },
+  "darkTheme": "dark theme",
+  "@darkTheme": {
+    "description": "Dark Theme drowpdown option label"
   }
 }

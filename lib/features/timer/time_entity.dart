@@ -1,4 +1,4 @@
-import 'package:pomodoro/extensions/int_extension.dart';
+import 'package:pomodoro/extensions/int_extensions.dart';
 
 class TimeEntity {
   TimeEntity({

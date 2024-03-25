@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:pomodoro/extensions/string_extensions.dart';
 
 import 'settings_controller.dart';
 
@@ -20,18 +22,24 @@ class SettingsPage extends StatelessWidget {
         child: DropdownButton<ThemeMode>(
           value: controller.themeMode,
           onChanged: controller.updateThemeMode,
-          items: const [
+          items: [
             DropdownMenuItem(
               value: ThemeMode.system,
-              child: Text('System Theme'),
+              child: Text(
+                AppLocalizations.of(context)!.systemTheme.capitalizeEachWord,
+              ),
             ),
             DropdownMenuItem(
               value: ThemeMode.light,
-              child: Text('Light Theme'),
+              child: Text(
+                AppLocalizations.of(context)!.lightTheme.capitalizeEachWord,
+              ),
             ),
             DropdownMenuItem(
               value: ThemeMode.dark,
-              child: Text('Dark Theme'),
+              child: Text(
+                AppLocalizations.of(context)!.darkTheme.capitalizeEachWord,
+              ),
             )
           ],
         ),

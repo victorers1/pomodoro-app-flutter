@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:pomodoro/enums/timer_mode_enum.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
 import 'package:pomodoro/features/home/settings_icon_widget.dart';
 import 'package:pomodoro/features/timer/timer_progress_indicator_widget.dart';
@@ -16,6 +18,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nextTimerButtonLabel =
+        'Change to ${controller.timerMode == TimerMode.pomodoro ? AppLocalizations.of(context)?.appTitle : AppLocalizations.of(context)?.breakTimer} timer';
+
     return ListenableBuilder(
       listenable: controller,
       builder: (context, child) {
@@ -62,7 +67,7 @@ class HomePage extends StatelessWidget {
                     const SizedBox(width: Sizes.size24),
                     FloatingActionButton(
                       heroTag: null,
-                      tooltip: controller.nextTimerButtonLabel,
+                      tooltip: nextTimerButtonLabel,
                       onPressed: controller.toggleTimerMode,
                       child: const Icon(
                         Icons.fast_forward_rounded,

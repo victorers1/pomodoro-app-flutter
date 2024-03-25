@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro/extensions/int_extension.dart';
+import 'package:pomodoro/extensions/int_extensions.dart';
 
 void main() {
   group('leftPad extension:', () {

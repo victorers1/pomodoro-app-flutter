@@ -1,0 +1,8 @@
+{
+  "appTitle": "Pomodoro",
+  "stopTimer": "parar",
+  "breakTimer": "intervalo",
+  "systemTheme": "tema do sistema",
+  "lightTheme": "tema claro",
+  "darkTheme": "tema escuro"
+}

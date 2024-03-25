@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:pomodoro/enums/timer_mode_enum.dart';
+import 'package:pomodoro/extensions/string_extensions.dart';
 import 'package:pomodoro/theme/sizes.dart';
 
 class TimerProgressIndicatorWidget extends StatelessWidget {
@@ -23,6 +26,9 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final halfScreenWidth = MediaQuery.of(context).size.width / 2;
     final progressIndicatorSize = Size.square(halfScreenWidth);
+    final timeHeaderLabel = timerMode == TimerMode.shortBreak
+        ? AppLocalizations.of(context)!.breakTimer.capitalize
+        : AppLocalizations.of(context)!.appTitle.capitalize;
 
     return Container(
       constraints: BoxConstraints.tight(progressIndicatorSize),
@@ -38,7 +44,7 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
             strokeWidth: Sizes.size8,
             strokeAlign: BorderSide.strokeAlignInside,
-            //TODO: semanticsLabel: ,
+            semanticsLabel: 'Pomodoro timer progress bar',
             semanticsValue: '$progressValue',
           ),
           Center(
@@ -46,7 +52,7 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  timerMode.label,
+                  timeHeaderLabel,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
@@ -66,7 +72,7 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'STOP',
+                      AppLocalizations.of(context)!.stopTimer.capitalize,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),

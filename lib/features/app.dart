@@ -1,7 +1,6 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
 
 import 'home/sample_item_details_page.dart';
@@ -32,15 +31,8 @@ class PomodoroApp extends StatelessWidget {
               /// leaves and returns to the app after it has been killed while
               /// running in the background.
               restorationScopeId: 'app',
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('en', ''), // English, no country code
-              ],
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
 
               /// Use AppLocalizations to configure the correct application
               /// title depending on the user's locale.

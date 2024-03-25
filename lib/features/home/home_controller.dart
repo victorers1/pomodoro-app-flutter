@@ -25,9 +25,6 @@ class HomeController with ChangeNotifier {
 
   bool get isTimerCounting => _timerService.isCounting;
 
-  String get nextTimerButtonLabel =>
-      'Change to ${timerMode == TimerMode.pomodoro ? TimerMode.shortBreak.label : TimerMode.pomodoro.label} timer';
-
   void onPressedPlayButton() {
     if (timerProgress == 1) {
       _timerService.startTimer();
