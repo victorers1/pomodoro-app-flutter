@@ -10,6 +10,8 @@ class SettingsIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.settings),
+      // TODO: add intl
+      tooltip: '',
       onPressed: () {
         Navigator.restorablePushNamed(
           context,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
 
-import 'home/sample_item_details_page.dart';
 import 'home/home_page.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_page.dart';
@@ -66,8 +65,6 @@ class PomodoroApp extends StatelessWidget {
                     switch (routeSettings.name) {
                       case SettingsPage.routeName:
                         return SettingsPage(controller: settingsController);
-                      case SampleEntityDetailsPage.routeName:
-                        return const SampleEntityDetailsPage();
                       case HomePage.routeName:
                       default:
                         return HomePage(controller: homeController);

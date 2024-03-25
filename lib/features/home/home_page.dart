@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: add intl
     final nextTimerButtonLabel =
         'Change to ${controller.timerMode == TimerMode.pomodoro ? AppLocalizations.of(context)?.appTitle : AppLocalizations.of(context)?.breakTimer} timer';
 
@@ -26,6 +27,7 @@ class HomePage extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
+            // TODO: add intl
             title: const Text('Home'),
             centerTitle: true,
             actions: const [SettingsIconWidget()],
@@ -50,6 +52,7 @@ class HomePage extends StatelessWidget {
                     controller.isTimerCounting
                         ? FloatingActionButton(
                             heroTag: null,
+                            // TODO: add intl
                             tooltip: 'Pause',
                             onPressed: controller.onPressedPlayButton,
                             child: const Icon(
@@ -58,6 +61,7 @@ class HomePage extends StatelessWidget {
                           )
                         : FloatingActionButton(
                             heroTag: null,
+                            // TODO: add intl
                             tooltip: 'Start',
                             onPressed: controller.onPressedPlayButton,
                             child: const Icon(
