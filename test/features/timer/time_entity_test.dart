@@ -57,7 +57,5 @@ void main() {
         expect(endOfTheDayTime, equals(TimeEntity(minutes: 59, seconds: 59)));
       });
     });
-
-    group('difference: ', () {});
   });
 }
