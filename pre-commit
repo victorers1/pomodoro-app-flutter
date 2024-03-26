@@ -1,0 +1,24 @@
+#!/bin/bash
+bold="$(tput bold)"
+red="$(tput setaf 1)"
+green="$(tput setaf 2)"
+yellow="$(tput setaf 3)"
+reset="$(tput sgr0)"
+
+printf "${yellow}🔎 Analisando o código.${reset}\n\n"
+
+if ! fvm flutter analyze; then
+    printf "\n${bold}${red}✋ Eita! Verifique os problemas apontados pelo flutter analyze.${reset}\n\n"
+    exit 1
+fi
+
+printf "\n${yellow}🗂 Formatando código.${reset}\n\n"
+
+fvm flutter format . --set-exit-if-changed
+
+if [ $? -eq 1 ]; then
+    printf "\n${bold}${red}✋ Verifique os arquivos formatados e os adicione ao commit.${reset}\n\n"
+    exit 1
+fi
+
+printf "\n${bold}${green}🚀 Arquivos formatados corretamente!\n\n${reset}"
