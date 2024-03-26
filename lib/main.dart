@@ -8,7 +8,7 @@ import 'package:pomodoro/features/local_memory/shared_preference_service.dart';
 import 'package:pomodoro/features/timer/timer_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'features/app.dart';
+import 'app.dart';
 import 'features/settings/settings_controller.dart';
 import 'features/settings/settings_service.dart';
 

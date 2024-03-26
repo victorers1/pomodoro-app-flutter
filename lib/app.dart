@@ -4,10 +4,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/features/build_info/i_build_info_service.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
 import 'package:pomodoro/features/local_memory/i_local_memory_service.dart';
+import 'package:pomodoro/features/maintanance/under_construction_page.dart';
 
-import 'home/home_page.dart';
-import 'settings/settings_controller.dart';
-import 'settings/settings_page.dart';
+import 'features/home/home_page.dart';
+import 'features/settings/settings_controller.dart';
+import 'features/settings/settings_page.dart';
 
 class PomodoroApp extends StatelessWidget {
   const PomodoroApp({
@@ -48,16 +49,12 @@ class PomodoroApp extends StatelessWidget {
                   AppLocalizations.of(context)!.appTitle,
               theme: ThemeData(
                 colorScheme: lightDynamic ??
-                    ColorScheme.fromSeed(
-                      seedColor: Colors.blue,
-                    ),
+                    ColorScheme.fromSeed(seedColor: Colors.blue),
                 useMaterial3: true,
               ),
               darkTheme: ThemeData(
                 colorScheme: darkDynamic ??
-                    ColorScheme.fromSeed(
-                      seedColor: Colors.black,
-                    ),
+                    ColorScheme.fromSeed(seedColor: Colors.black),
                 useMaterial3: true,
               ),
               themeMode: settingsController.themeMode,
@@ -68,16 +65,22 @@ class PomodoroApp extends StatelessWidget {
                 return MaterialPageRoute<void>(
                   settings: routeSettings,
                   builder: (BuildContext context) {
-                    switch (routeSettings.name) {
-                      case SettingsPage.routeName:
-                        return SettingsPage(
+                    final page = switch (routeSettings.name) {
+                      SettingsPage.routeName => SettingsPage(
                           controller: settingsController,
                           buildInfoService: buildInfoService,
-                        );
-                      case HomePage.routeName:
-                      default:
-                        return HomePage(controller: homeController);
-                    }
+                        ),
+                      HomePage.routeName => HomePage(
+                          controller: homeController,
+                        ),
+                      _ => const UnderConstructionPage(),
+                    };
+
+                    return Localizations.override(
+                      context: context,
+                      locale: Locale(settingsController.language.name),
+                      child: page,
+                    );
                   },
                 );
               },

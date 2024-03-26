@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/extensions/string_extensions.dart';
 import 'package:pomodoro/features/build_info/i_build_info_service.dart';
-import 'package:pomodoro/features/settings/app_language_setting_widget.dart';
-import 'package:pomodoro/features/settings/app_theme_setting_widget.dart';
+import 'package:pomodoro/features/build_info/version_info_widget.dart';
+import 'package:pomodoro/features/settings/language_setting_widget.dart';
+import 'package:pomodoro/features/settings/theme_setting_widget.dart';
 import 'package:pomodoro/theme/sizes.dart';
 
 import 'settings_controller.dart';
@@ -44,16 +45,7 @@ class SettingsPage extends StatelessWidget {
               onChanged: controller.updateLanguage,
             ),
             const Spacer(),
-            FutureBuilder<List<String>>(
-              future: buildInfo,
-              initialData: const ['x.y.z', '0'],
-              builder: (context, snapshot) {
-                String versionNumber = '';
-                String buildNumber = '';
-                [versionNumber, buildNumber] = snapshot.data ?? ['', ''];
-                return Text('$versionNumber+$buildNumber');
-              },
-            ),
+            VersionInfoWidget(buildInfo: buildInfo),
           ],
         ),
       ),
