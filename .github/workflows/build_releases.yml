@@ -56,5 +56,5 @@ jobs:
       - run: flutter build appbundle
       - uses: actions/upload-artifact@master
         with:
-          name: apk-build
-          path: build/app/outputs/apk/release
+          name: app-release
+          path: build/app/outputs/bundle/release/
