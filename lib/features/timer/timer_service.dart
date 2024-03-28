@@ -4,19 +4,24 @@ import 'package:flutter/services.dart';
 import 'package:pomodoro/features/timer/time_entity.dart';
 
 class TimerService {
-  double remainingSeconds = double.infinity;
-  double totalSeconds = double.infinity;
+  double _remainingSeconds = double.infinity;
+  double _totalSeconds = double.infinity;
 
+  /// Functions called when the counter advances one time unit. The first call
+  /// is at after the first second.
   final List<VoidCallback> _countListeners = [];
   Timer? _timer;
+
+  /// Functions called when the timer reaches zero seconds
   final List<VoidCallback> _timerCompleteListeners = [];
 
   bool get isCounting => _timer?.isActive ?? false;
 
   String get formattedTime => TimeEntity(
         minutes: 0,
-        seconds:
-            remainingSeconds == double.infinity ? 0 : remainingSeconds.toInt(),
+        seconds: _remainingSeconds == double.infinity
+            ? 0
+            : _remainingSeconds.toInt(),
       ).toString();
 
   /// [progress] is a number in the interval [0,1].
@@ -25,7 +30,7 @@ class TimerService {
   double get progress {
     var result = double.infinity;
     try {
-      result = (totalSeconds - remainingSeconds) / totalSeconds;
+      result = (_totalSeconds - _remainingSeconds) / _totalSeconds;
     } on UnsupportedError {
       result = 1;
     }
@@ -38,11 +43,10 @@ class TimerService {
   }
 
   void startTimer() {
-    totalSeconds = remainingSeconds = const Duration(
+    _totalSeconds = _remainingSeconds = const Duration(
       seconds: 5,
     ).inSeconds.toDouble();
 
-    _notifyCountListeners();
     setDecrementingTimer();
   }
 
@@ -52,7 +56,7 @@ class TimerService {
 
   void setDecrementingTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      remainingSeconds--;
+      _remainingSeconds--;
       _notifyCountListeners();
 
       if (_countFinished) {
@@ -65,8 +69,8 @@ class TimerService {
   void resetTimeCounter() {
     _timer?.cancel();
     _timer = null;
-    remainingSeconds = double.infinity;
-    totalSeconds = double.infinity;
+    _remainingSeconds = double.infinity;
+    _totalSeconds = double.infinity;
   }
 
   void addCountListener(VoidCallback f) {
@@ -82,7 +86,7 @@ class TimerService {
     _timerCompleteListeners.clear();
   }
 
-  bool get _countFinished => remainingSeconds == 0;
+  bool get _countFinished => _remainingSeconds == 0;
 
   void _notifyCountListeners() {
     for (final l in _countListeners) {

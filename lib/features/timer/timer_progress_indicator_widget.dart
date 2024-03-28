@@ -31,6 +31,9 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
         ? AppLocalizations.of(context)!.breakTimer.capitalize
         : AppLocalizations.of(context)!.appTitle.capitalize;
 
+    final pomodoroColor = Theme.of(context).colorScheme.primary;
+    final breakColor = Theme.of(context).colorScheme.inversePrimary;
+
     return Container(
       constraints: BoxConstraints.tight(progressIndicatorSize),
       width: halfScreenWidth,
@@ -42,7 +45,7 @@ class TimerProgressIndicatorWidget extends StatelessWidget {
             value: progressValue,
             strokeCap: StrokeCap.round,
             backgroundColor: Theme.of(context).highlightColor,
-            color: Theme.of(context).colorScheme.primary,
+            color: timerMode == TimerMode.pomodoro ? pomodoroColor : breakColor,
             strokeWidth: Sizes.size8,
             strokeAlign: BorderSide.strokeAlignInside,
             semanticsLabel:

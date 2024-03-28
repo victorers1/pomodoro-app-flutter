@@ -64,6 +64,7 @@ The designs that inspired the app's screens are at `designs` folder.
 | Break timer | ✅ |
 | Stop button | ✅ |
 | Forward button | ✅ |
+| Overall progress bar | ⏹️ |
 | Animated progress bar | ⏹️ |
 | Animated title change | ⏹️ |
 | Vibrate when counter ends | ⏹️ |
@@ -71,7 +72,7 @@ The designs that inspired the app's screens are at `designs` folder.
 | Change pomodoro & break length | ⏹️ |
 | Count time while in background | ⏹️ |
 | Resume counting when app is open | ⏹️ |
-| Keep phone awake while counting| ⏹️ |
+| Keep phone awake while counting | ⏹️ |
 ---
 
 ### Programming
@@ -87,5 +88,6 @@ The designs that inspired the app's screens are at `designs` folder.
 | Google Analytics | ⏹️ |
 | Crashlytics | ⏹️ |
 | Deploy with Fastlane | ⏹️ |
-| Github Actions to eval commits | ⏹️ |
+| Github Actions to eval commits | ✅ |
+| Github Actions to build artifacts | ✅ |
 ---

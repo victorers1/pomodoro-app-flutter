@@ -38,7 +38,6 @@ jobs:
           name: ios-build
           path: build/ios/iphoneos
 
-
   build_appbundle:
     name: Build Flutter (Android)
     needs: [flutter_test]

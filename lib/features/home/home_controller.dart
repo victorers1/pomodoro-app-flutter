@@ -5,11 +5,14 @@ import 'package:pomodoro/features/timer/timer_service.dart';
 class HomeController with ChangeNotifier {
   HomeController(this._timerService) {
     _timerService.addCountListener(notifyListeners);
+    _timerService.addCountListener(advanceMultiColorTimer);
     _timerService.addTimerCompleteListener(toggleTimerMode);
     _timerService.addTimerCompleteListener(notifyListeners);
   }
 
   var timerMode = TimerMode.pomodoro;
+
+  final List<int> multiColorBarProgress = [0];
 
   final TimerService _timerService;
 
@@ -46,6 +49,16 @@ class HomeController with ChangeNotifier {
     timerMode = (timerMode == TimerMode.pomodoro)
         ? TimerMode.shortBreak
         : TimerMode.pomodoro;
+
+    addStepToMultiColorTimer();
     notifyListeners();
+  }
+
+  void advanceMultiColorTimer() {
+    multiColorBarProgress.last++;
+  }
+
+  void addStepToMultiColorTimer() {
+    multiColorBarProgress.add(0);
   }
 }
