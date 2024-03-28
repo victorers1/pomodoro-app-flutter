@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:pomodoro/features/timer/time_entity.dart';
 
 class TimerService {
+  static const focusDefaultDuration = Duration(minutes: 25);
+  static const breakDefaultDuration = Duration(minutes: 5);
+
   double _remainingSeconds = double.infinity;
   double _totalSeconds = double.infinity;
 

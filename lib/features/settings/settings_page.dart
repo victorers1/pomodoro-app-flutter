@@ -3,8 +3,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/extensions/string_extensions.dart';
 import 'package:pomodoro/features/build_info/i_build_info_service.dart';
 import 'package:pomodoro/features/build_info/version_info_widget.dart';
-import 'package:pomodoro/features/settings/language_setting_widget.dart';
-import 'package:pomodoro/features/settings/theme_setting_widget.dart';
+import 'package:pomodoro/features/settings/widgets/break_duration_settings_widget.dart';
+import 'package:pomodoro/features/settings/widgets/focus_duration_settings_widget.dart';
+import 'package:pomodoro/features/settings/widgets/language_setting_widget.dart';
+import 'package:pomodoro/features/settings/widgets/theme_setting_widget.dart';
 import 'package:pomodoro/theme/sizes.dart';
 
 import 'settings_controller.dart';
@@ -36,13 +38,29 @@ class SettingsPage extends StatelessWidget {
         padding: const EdgeInsets.all(Sizes.size16),
         child: Column(
           children: [
-            AppThemeSettingWidget(
-              themeMode: controller.themeMode,
-              onChanged: controller.updateThemeMode,
+            Card(
+              child: ThemeSettingWidget(
+                themeMode: controller.themeMode,
+                onSelected: controller.updateThemeMode,
+              ),
             ),
-            AppLanguageSettingWidget(
-              language: controller.language,
-              onChanged: controller.updateLanguage,
+            Card(
+              child: LanguageSettingWidget(
+                language: controller.language,
+                onSelected: controller.updateLanguage,
+              ),
+            ),
+            Card(
+              child: FocusDurationSettingWidget(
+                focusDuration: const Duration(minutes: 25),
+                onChanged: (p0) {},
+              ),
+            ),
+            Card(
+              child: BreakDurationSettingWidget(
+                focusDuration: const Duration(minutes: 5),
+                onChanged: ((p0) {}),
+              ),
             ),
             const Spacer(),
             VersionInfoWidget(buildInfo: buildInfo),

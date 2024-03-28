@@ -13,9 +13,17 @@ class SharedPreferenceService extends ILocalMemoryService {
 
   @override
   Future<void> storeString(String key, String value) async {
-    _prefs.setString(key, value);
+    await _prefs.setString(key, value);
   }
 
   @override
   Future<String?> loadString(String key) async => _prefs.getString(key);
+
+  @override
+  Future<void> storeInt(String key, int value) async {
+    await _prefs.setInt(key, value);
+  }
+
+  @override
+  Future<int?> loadInt(String key) async => _prefs.getInt(key);
 }
