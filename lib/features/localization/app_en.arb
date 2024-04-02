@@ -64,6 +64,17 @@
   "language": "language",
   "@language": {
     "description": "App's display language"
+  },
+  "breakDuration": "break duration",
+  "@breakDuration": {
+    "description": "Break duration settings item label"
+  },
+  "focusDuration": "focus duration",
+  "@focusDuration": {
+    "description": "Focus duration settings item label"
+  },
+  "minutesAbbrev": "min",
+  "@minutesAbbrev": {
+    "description": "minutes abbreviation"
   }
-
 }

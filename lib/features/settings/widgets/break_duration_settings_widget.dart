@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/extensions/string_extensions.dart';
 
-// TODO: add intl
 class BreakDurationSettingWidget extends StatelessWidget {
   const BreakDurationSettingWidget({
     super.key,
@@ -17,9 +16,9 @@ class BreakDurationSettingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text('Break duration'.capitalize),
+      title: Text('${AppLocalizations.of(context)?.breakDuration.capitalize}'),
       trailing: Text(
-        '${focusDuration.inMinutes} min',
+        '${focusDuration.inMinutes} ${AppLocalizations.of(context)?.minutesAbbrev}',
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               fontWeight: FontWeight.w500,
             ),

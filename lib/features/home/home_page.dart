@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pomodoro/enums/timer_mode_enum.dart';
 import 'package:pomodoro/extensions/string_extensions.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
 import 'package:pomodoro/features/home/settings_icon_widget.dart';
-import 'package:pomodoro/features/settings/widgets/integers_scroll_picker_widget.dart';
 import 'package:pomodoro/features/timer/multicolor_progress_bar_widget.dart';
 import 'package:pomodoro/features/timer/timer_progress_indicator_widget.dart';
+import 'package:pomodoro/test_page.dart';
 import 'package:pomodoro/theme/sizes.dart';
 
 class HomePage extends StatelessWidget {
@@ -37,7 +36,11 @@ class HomePage extends StatelessWidget {
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.home.capitalize),
+            title: GestureDetector(
+              onHorizontalDragEnd: (details) =>
+                  Navigator.of(context).pushNamed(TestPage.routeName),
+              child: Text(AppLocalizations.of(context)!.home.capitalize),
+            ),
             centerTitle: true,
             actions: const [SettingsIconWidget()],
           ),
@@ -95,15 +98,6 @@ class HomePage extends StatelessWidget {
                         const Spacer(),
                       ],
                     ),
-                    const Spacer(),
-                    SizedBox(
-                      height: Sizes.size56,
-                      child: IntegerScrollPickerWidget(
-                        options: [10, 15, 20, 25, 30],
-                        onPicked: (p0) => print('selected: $p0'),
-                      ),
-                    ),
-                    const Spacer(),
                   ],
                 ),
               ),

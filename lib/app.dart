@@ -5,6 +5,7 @@ import 'package:pomodoro/features/build_info/i_build_info_service.dart';
 import 'package:pomodoro/features/home/home_controller.dart';
 import 'package:pomodoro/features/local_memory/i_local_memory_service.dart';
 import 'package:pomodoro/features/maintanance/under_construction_page.dart';
+import 'package:pomodoro/test_page.dart';
 
 import 'features/home/home_page.dart';
 import 'features/settings/settings_controller.dart';
@@ -73,6 +74,7 @@ class PomodoroApp extends StatelessWidget {
                       HomePage.routeName => HomePage(
                           controller: homeController,
                         ),
+                      TestPage.routeName => const TestPage(),
                       _ => const UnderConstructionPage(),
                     };
 

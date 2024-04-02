@@ -13,5 +13,8 @@
   "startTimer": "iniciar",
   "forwardTimer": "Pular para {timerMode}",
   "timerIndicatorSemanticsLabel": "Barra de progresso do pomodoro",
-  "language": "idioma"
+  "language": "idioma",
+  "breakDuration": "duração do intervalo",
+  "focusDuration": "duração do foco",
+  "minutesAbbrev": "min"
 }

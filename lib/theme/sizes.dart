@@ -1,6 +1,4 @@
-class Sizes {
-  Sizes._();
-
+sealed class Sizes {
   static const double size1 = 1.0;
   static const double size2 = 2.0;
   static const double size4 = 4.0;
